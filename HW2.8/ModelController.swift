@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+struct Dish {
+    let menuSection: String
+    let dishName: String
+    let dishCost: Float
+    let dishImageName: String
+}
+
