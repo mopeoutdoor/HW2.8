@@ -17,13 +17,15 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        labelTextField.text = someDish.dishName
+        navigationItem.title = someDish.dishName
+        imageView.image = UIImage(named: someDish.dishImageName)
+        labelTextField.text = someDish.dishDescription
     }
     
 
     @IBAction func tapButton(_ sender: UIButton) {
         AppController.shared.appendDishesToBasket(someDishes: someDish)
+
     }
     
     /*

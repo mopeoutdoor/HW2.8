@@ -32,7 +32,10 @@ class MenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath)
         let dishesDic = AppController.shared.dishesDic(sectionName: sectionDic[indexPath.section]!)
-        cell.textLabel?.text = dishesDic[indexPath.row]?.dishImageName
+        let dish = dishesDic[indexPath.row]!
+        cell.textLabel?.text = dish.dishName
+        cell.detailTextLabel?.text = String(dish.dishCost)
+        cell.imageView?.image = UIImage(named: dish.dishImageName)
  
         return cell
     }
@@ -92,5 +95,7 @@ class MenuTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     
+    @IBAction func unwindToMenu(unwindSegue: UIStoryboardSegue) {
+    }
 
 }

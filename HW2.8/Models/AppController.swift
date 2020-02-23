@@ -27,8 +27,10 @@ class AppController {
     
     // Создаюем словарь из блюд с ключами по разделам меню
     func menu() -> [String:[Dish]] {
-        for item in dishes {
-            menuBySection[item.menuSection, default: []].append(item)
+        if menuBySection.isEmpty {
+            for item in dishes {
+                menuBySection[item.menuSection, default: []].append(item)
+            }
         }
         return menuBySection
     }
@@ -36,9 +38,9 @@ class AppController {
     // Создаем словарь из ключей по разделам
     func sectionsDic() -> [Int: String] {
         var index = 0
-        let sectionDic = menu()
+        let sectionDic = menu().map { $0.0 } .sorted(by: < )
         for item in sectionDic {
-            sectionById[index] = item.key
+            sectionById[index] = item
             index += 1
         }
         return sectionById
@@ -47,8 +49,9 @@ class AppController {
     // Создаем словарь из блюд по конкретному разделу
     func dishesDic(sectionName: String) -> [Int: Dish] {
         guard let someDishes = menu()[sectionName] else { return [:] }
+        let sortedSomeDishes = someDishes.sorted(by: { $0.dishName < $1.dishName })
         var index = 0
-        for item in someDishes {
+        for item in sortedSomeDishes {
             dishesInSection[index] = item
             index += 1
         }
