@@ -15,6 +15,13 @@ class AppController {
     private var dishesInSection = [Int: Dish]()
     var basket = [Dish]()
     
+    var basketCost: Float {
+        var sum: Float = 0
+        
+        basket.forEach { sum += $0.dishCost }
+        
+        return sum
+    }
 
     let dishes = Dish.getDishes()
     

@@ -39,14 +39,20 @@ class BasketTableViewController: UITableViewController {
             return
         }
         
-        let newOrder = Order(dishes: AppController.shared.basket)
+        let basketCost = String(format: "%.2f", AppController.shared.basketCost)
         
-        Orders.shared.appendNewOrder(order: newOrder)
-        AppController.shared.basket = []
-        
-        showAlert(title: "Заказ № \(newOrder.number)",
-                  message: "Заказ успешно создан и доступен на вкладке \"Заказы\"")
-        
-        tableView.reloadData()
+        showQuestion(title: "Новый заказ",
+                     message: "Создать заказ на сумму \(basketCost) руб?") { handler in
+                        let newOrder = Order(dishes: AppController.shared.basket)
+                        
+                        Orders.shared.appendNewOrder(order: newOrder)
+                        AppController.shared.basket = []
+                        
+                        self.tableView.reloadData()
+                        
+                        self.showAlert(
+                            title: "Заказ № \(newOrder.number)",
+                            message: "Заказ успешно создан и доступен на вкладке \"Заказы\"")
+        }
     }
 }
