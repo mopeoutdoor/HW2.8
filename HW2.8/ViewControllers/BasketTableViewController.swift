@@ -55,4 +55,14 @@ class BasketTableViewController: UITableViewController {
                             message: "Заказ успешно создан и доступен на вкладке \"Заказы\"")
         }
     }
+    
+    @IBAction func deleteButtonPressed(_ sender: Any) {
+        guard AppController.shared.basket.count > 0 else { return }
+        
+        showQuestion(title: "Очистить корзину?",
+                     message: "Вы уверены, что хотите полностью очистить корзину?") { handler in
+                        AppController.shared.basket = []
+                        self.tableView.reloadData()
+        }
+    }
 }

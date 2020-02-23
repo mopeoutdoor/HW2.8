@@ -89,7 +89,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Корзина" id="xMW-Zb-Pax">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="OlM-8d-2fl">
+                        <barButtonItem key="leftBarButtonItem" title="Очистить" id="fEe-fT-bmg">
+                            <connections>
+                                <action selector="deleteButtonPressed:" destination="SRh-oG-HlD" id="iSp-7w-bqU"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Заказать" id="OlM-8d-2fl">
                             <connections>
                                 <action selector="doneButtonPressed:" destination="SRh-oG-HlD" id="GYv-zE-9t9"/>
                             </connections>
