@@ -13,7 +13,7 @@ class AppController {
     private var menuBySection = [String:[Dish]]()
     private var sectionById = [Int: String]()
     private var dishesInSection = [Int: Dish]()
-    private var basket = [Dish]()
+    var basket = [Dish]()
     
 
     let dishes = Dish.getDishes()
