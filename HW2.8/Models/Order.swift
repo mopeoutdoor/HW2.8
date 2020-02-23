@@ -14,7 +14,7 @@ struct Order {
     let sum: Float
     
     var orderInfo: String {
-        return "Заказ № \(self.number) - \(self.sum) руб."
+        return "Заказ № \(self.number) - \(self.sum.toString()) руб."
     }
     
     var dishesList: String {

@@ -27,7 +27,7 @@ class BasketTableViewController: UITableViewController {
         let dish = AppController.shared.basket[indexPath.row]
         
         cell.textLabel?.text = dish.dishName
-        cell.detailTextLabel?.text = String(dish.dishCost)
+        cell.detailTextLabel?.text = dish.dishCost.toString()
         
         return cell
     }
@@ -39,7 +39,7 @@ class BasketTableViewController: UITableViewController {
             return
         }
         
-        let basketCost = String(format: "%.2f", AppController.shared.basketCost)
+        let basketCost = AppController.shared.basketCost.toString()
         
         showQuestion(title: "Новый заказ",
                      message: "Создать заказ на сумму \(basketCost) руб?") { handler in
