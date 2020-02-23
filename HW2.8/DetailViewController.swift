@@ -23,7 +23,9 @@ class DetailViewController: UIViewController {
     
 
     @IBAction func tapButton(_ sender: UIButton) {
+        AppController.shared.appendDishesToBasket(someDishes: someDish)
     }
+    
     /*
     // MARK: - Navigation
 
