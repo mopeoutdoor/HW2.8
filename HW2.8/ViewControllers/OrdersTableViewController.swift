@@ -26,10 +26,18 @@ class OrdersTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath)
         let order = Orders.shared.orderList[indexPath.row]
         
-        cell.textLabel?.text = order.orderInfo
-        cell.detailTextLabel?.text = order.dishesList
-        cell.detailTextLabel?.numberOfLines = 0
+        cell.textLabel?.text = "Заказ № \(order.number)"
+        cell.detailTextLabel?.text = order.sum.toString()
         
         return cell
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let odtVC = segue.destination as? OrderDetailTableViewController {
+            if let currentOrder = tableView.indexPathForSelectedRow?.row {
+                odtVC.order = Orders.shared.orderList[currentOrder]
+            }
+        }
     }
 }

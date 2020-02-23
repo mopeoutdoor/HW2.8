@@ -17,4 +17,16 @@ extension UIViewController {
         
         present(alert, animated: true)
     }
+    
+    func showQuestion(title: String, message: String, handler: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Да", style: .default, handler: handler)
+        let cancel = UIAlertAction(title: "Нет", style: .default)
+        
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true)
+    }
+    
 }

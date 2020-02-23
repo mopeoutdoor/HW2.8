@@ -27,7 +27,7 @@ class BasketTableViewController: UITableViewController {
         let dish = AppController.shared.basket[indexPath.row]
         
         cell.textLabel?.text = dish.dishName
-        cell.detailTextLabel?.text = String(dish.dishCost)
+        cell.detailTextLabel?.text = dish.dishCost.toString()
         
         return cell
     }
@@ -39,14 +39,30 @@ class BasketTableViewController: UITableViewController {
             return
         }
         
-        let newOrder = Order(dishes: AppController.shared.basket)
+        let basketCost = AppController.shared.basketCost.toString()
         
-        Orders.shared.appendNewOrder(order: newOrder)
-        AppController.shared.basket = []
+        showQuestion(title: "Новый заказ",
+                     message: "Создать заказ на сумму \(basketCost) руб?") { handler in
+                        let newOrder = Order(dishes: AppController.shared.basket)
+                        
+                        Orders.shared.appendNewOrder(order: newOrder)
+                        AppController.shared.clearBasket()
+                        
+                        self.tableView.reloadData()
+                        
+                        self.showAlert(
+                            title: "Заказ № \(newOrder.number)",
+                            message: "Заказ успешно создан и доступен на вкладке \"Заказы\"")
+        }
+    }
+    
+    @IBAction func deleteButtonPressed(_ sender: Any) {
+        guard AppController.shared.basket.count > 0 else { return }
         
-        showAlert(title: "Заказ № \(newOrder.number)",
-                  message: "Заказ успешно создан и доступен на вкладке \"Заказы\"")
-        
-        tableView.reloadData()
+        showQuestion(title: "Очистить корзину?",
+                     message: "Вы уверены, что хотите полностью очистить корзину?") { handler in
+                        AppController.shared.clearBasket()
+                        self.tableView.reloadData()
+        }
     }
 }
