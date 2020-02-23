@@ -46,7 +46,7 @@ class BasketTableViewController: UITableViewController {
                         let newOrder = Order(dishes: AppController.shared.basket)
                         
                         Orders.shared.appendNewOrder(order: newOrder)
-                        AppController.shared.basket = []
+                        AppController.shared.clearBasket()
                         
                         self.tableView.reloadData()
                         
@@ -61,7 +61,7 @@ class BasketTableViewController: UITableViewController {
         
         showQuestion(title: "Очистить корзину?",
                      message: "Вы уверены, что хотите полностью очистить корзину?") { handler in
-                        AppController.shared.basket = []
+                        AppController.shared.clearBasket()
                         self.tableView.reloadData()
         }
     }

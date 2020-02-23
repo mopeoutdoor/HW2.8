@@ -59,4 +59,9 @@ class AppController {
     func appendDishesToBasket(someDishes: Dish) {
         basket.append(someDishes)
     }
+    
+    // Очищаем корзину
+    func clearBasket() {
+        basket = []
+    }
 }

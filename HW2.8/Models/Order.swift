@@ -7,7 +7,7 @@
 //
 
 struct Order {
-    static var currentNumber = 1 // используется для просвоения уникального номера заказам
+    static var currentNumber = 1 // используется для присвоения уникального номера заказам
     
     let number: Int
     let dishes: [Dish]
@@ -15,15 +15,6 @@ struct Order {
     
     var orderInfo: String {
         return "Заказ № \(self.number) - \(self.sum.toString()) руб."
-    }
-    
-    var dishesList: String {
-        var result = ""
-        
-        dishes.forEach { result += "\($0.dishName) - \($0.dishCost) руб.\n" }
-        result.removeLast()
-        
-        return result
     }
     
     init(dishes: [Dish]) {
