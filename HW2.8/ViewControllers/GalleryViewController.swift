@@ -17,7 +17,7 @@ class Gallery: UIViewController {
 extension Gallery: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        galleryImages.count
+        return galleryImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -41,7 +41,7 @@ extension Gallery: UICollectionViewDelegate, UICollectionViewDataSource {
 
 extension Gallery: QLPreviewControllerDelegate, QLPreviewControllerDataSource {
     func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
-        galleryImages.count
+        return galleryImages.count
     }
     
     func previewController(_ controller: QLPreviewController,
